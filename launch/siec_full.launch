@@ -1,0 +1,9 @@
+<launch>
+  <node type="web_video_server" pkg="web_video_server" name="web_video_server"/>
+
+ 
+  <include file="$(find raspicam_node)/launch/camerav2_410x308_30fps.launch">
+    <arg name="enable_raw" value="true"/>
+  </include>
+
+</launch>
