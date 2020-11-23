@@ -30,7 +30,7 @@
     name="republish_image"
     output="screen"
     args="raw in:=/image_lidar
-          compressed out:=/image_lidar/compressed">
+          compressed out:=/image_lidar/compressed/image">
   </node>
 
 </launch>
