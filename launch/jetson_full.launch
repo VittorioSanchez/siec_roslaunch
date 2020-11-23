@@ -1,10 +1,36 @@
-<launch>
-  <node type="web_video_server" pkg="web_video_server" name="web_video_server"/>
+<!--Used for visualising rplidar in action.  
+  
+  It requires rplidar.launch.-->
 
- 
-  <include file="$(find raspicam_node)/launch/camerav2_410x308_30fps.launch">
-    <arg name="enable_raw" value="true"/>
-  </include>
-<--modify and launch files for jetson/-->
+<launch>
+  <include file="$(find rplidar_ros)/launch/rplidar_a3.launch" />
+  <include file="$(find hector_mapping)/launch/mapping_default.launch" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find siec_roslaunch)/rviz/rplidar.rviz" />
+  
+  <group ns="camera1">
+    <node pkg="tf" type="static_transform_publisher" name="camera_broadcaster"
+        args="-15 0 15 1.57 3.14 1.1 laser camera1 10" />
+    <node name="camera_info" pkg="rostopic" type="rostopic"
+        args="pub camera_info sensor_msgs/CameraInfo
+       '{header: {seq: 0, stamp: {secs: 0, nsecs: 0}, frame_id: 'camera1'},
+        height: 480, width: 640, distortion_model: 'plumb_bob',
+        D: [0],
+        K: [500.0, 0.0, 320, 0.0, 500.0, 240.0, 0.0, 0.0, 1.0],
+        R: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0],
+        P: [500.0, 0.0, 320, 0.0, 0.0, 500, 240, 0.0, 0.0, 0.0, 1.0, 0.0],
+        binning_x: 0, binning_y: 0,
+        roi: {x_offset: 0, y_offset: 0, height: 480, width: 640, do_rectify: false}}' -r 2"
+        output="screen"/>
+  </group>
+  
+  <node
+    pkg="image_transport"
+    type="republish"
+    name="republish_image"
+    output="screen"
+    args="raw in:=/image_lidar
+          compressed out:=/image_lidar/compressed">
+  </node>
 
 </launch>

@@ -30,16 +30,7 @@
   <!-- Use doc_depend for packages you need only for building documentation: -->
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>async_web_server_cpp</build_depend>
-  <build_depend>image_transport</build_depend>
-  <build_depend>raspicam_node</build_depend>
-  <build_depend>rosbridge_server</build_depend>
-  <build_depend>web_video_server</build_depend>
-  <exec_depend>async_web_server_cpp</exec_depend>
-  <exec_depend>image_transport</exec_depend>
-  <exec_depend>raspicam_node</exec_depend>
-  <exec_depend>rosbridge_server</exec_depend>
-  <exec_depend>web_video_server</exec_depend>
+
 
 
   <!-- The export tag contains other, unspecified, tags -->

@@ -8,11 +8,11 @@ project(siec_roslaunch)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  async_web_server_cpp
-  image_transport
-  raspicam_node
-  rosbridge_server
-  web_video_server
+  #async_web_server_cpp
+  #image_transport
+  #raspicam_node
+  #rosbridge_server
+  #web_video_server
 )
 
 ## System dependencies are found with CMake's conventions
