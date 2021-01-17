@@ -3,10 +3,12 @@
   It requires rplidar.launch.-->
 
 <launch>
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
   <include file="$(find rplidar_ros)/launch/rplidar_a3.launch" />
   <include file="$(find hector_mapping)/launch/mapping_default.launch" />
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find siec_roslaunch)/rviz/rplidar.rviz" />
+  <node name="web_video_server" pkg="web_video_server" type="web_video_server"/>
   
   <group ns="camera1">
     <node pkg="tf" type="static_transform_publisher" name="camera_broadcaster"
